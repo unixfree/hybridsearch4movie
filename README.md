@@ -61,142 +61,154 @@ The hybrid search can be performed using both the Couchbase Python SDK & the Lan
 
   ```json
   {
-    "type": "fulltext-index",
-    "name": "movies._default.movies-search-demo",
-    "uuid": "7103dcd1a3781f50",
-    "sourceType": "gocbcore",
-    "sourceName": "movies",
-    "planParams": {
-      "maxPartitionsPerPIndex": 64,
-      "indexPartitions": 16
-    },
-    "params": {
-      "doc_config": {
-        "docid_prefix_delim": "",
-        "docid_regexp": "",
-        "mode": "scope.collection.type_field",
-        "type_field": "type"
-      },
-      "mapping": {
-        "analysis": {},
-        "default_analyzer": "standard",
-        "default_datetime_parser": "dateTimeOptional",
-        "default_field": "_all",
-        "default_mapping": {
-          "dynamic": false,
-          "enabled": false
-        },
-        "default_type": "_default",
-        "docvalues_dynamic": false,
-        "index_dynamic": false,
-        "store_dynamic": false,
-        "type_field": "_type",
-        "types": {
-          "_default._default": {
-            "dynamic": false,
-            "enabled": true,
-            "properties": {
-              "IMDB_Rating": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "index": true,
-                    "name": "IMDB_Rating",
-                    "store": true,
-                    "type": "number"
-                  }
-                ]
-              },
-              "Overview": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "analyzer": "en",
-                    "index": true,
-                    "name": "Overview",
-                    "store": true,
-                    "type": "text"
-                  }
-                ]
-              },
-              "Overview_embedding": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "dims": 1536,
-                    "index": true,
-                    "name": "Overview_embedding",
-                    "similarity": "dot_product",
-                    "type": "vector",
-                    "vector_index_optimized_for": "recall"
-                  }
-                ]
-              },
-              "Poster_Link": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "analyzer": "en",
-                    "index": true,
-                    "name": "Poster_Link",
-                    "store": true,
-                    "type": "text"
-                  }
-                ]
-              },
-              "Released_Year": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "index": true,
-                    "name": "Released_Year",
-                    "store": true,
-                    "type": "number"
-                  }
-                ]
-              },
-              "Runtime": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "analyzer": "en",
-                    "index": true,
-                    "name": "Runtime",
-                    "store": true,
-                    "type": "text"
-                  }
-                ]
-              },
-              "Series_Title": {
-                "dynamic": false,
-                "enabled": true,
-                "fields": [
-                  {
-                    "analyzer": "keyword",
-                    "index": true,
-                    "name": "Series_Title",
-                    "store": true,
-                    "type": "text"
-                  }
-                ]
-              }
-            }
-          }
+ "name": "idx_movie_openai",
+ "type": "fulltext-index",
+ "params": {
+  "doc_config": {
+   "docid_prefix_delim": "",
+   "docid_regexp": "",
+   "mode": "scope.collection.type_field",
+   "type_field": "type"
+  },
+  "mapping": {
+   "default_analyzer": "standard",
+   "default_datetime_parser": "dateTimeOptional",
+   "default_field": "_all",
+   "default_mapping": {
+    "dynamic": false,
+    "enabled": false
+   },
+   "default_type": "_default",
+   "docvalues_dynamic": false,
+   "index_dynamic": false,
+   "store_dynamic": false,
+   "type_field": "_type",
+   "types": {
+    "semantic.movie_openai": {
+     "dynamic": true,
+     "enabled": true,
+     "properties": {
+      "IMDB_Rating": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "index": true,
+         "name": "IMDB_Rating",
+         "store": true,
+         "type": "number"
         }
+       ]
       },
-      "store": {
-        "indexType": "scorch",
-        "segmentVersion": 16
+      "Overview": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "analyzer": "en",
+         "index": true,
+         "name": "Overview",
+         "store": true,
+         "type": "text"
+        }
+       ]
+      },
+      "Overview_embedding": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "dims": 1536,
+         "index": true,
+         "name": "Overview_embedding",
+         "similarity": "dot_product",
+         "type": "vector",
+         "vector_index_optimized_for": "recall"
+        }
+       ]
+      },
+      "Overview_ko": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "analyzer": "cjk",
+         "index": true,
+         "name": "Overview_ko",
+         "store": true,
+         "type": "text"
+        }
+       ]
+      },
+      "Poster_Link": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "analyzer": "en",
+         "index": true,
+         "name": "Poster_Link",
+         "store": true,
+         "type": "text"
+        }
+       ]
+      },
+      "Released_Year": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "index": true,
+         "name": "Released_Year",
+         "store": true,
+         "type": "number"
+        }
+       ]
+      },
+      "Runtime": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "analyzer": "en",
+         "index": true,
+         "name": "Runtime",
+         "store": true,
+         "type": "text"
+        }
+       ]
+      },
+      "Series_Title": {
+       "enabled": true,
+       "dynamic": false,
+       "fields": [
+        {
+         "analyzer": "keyword",
+         "index": true,
+         "name": "Series_Title",
+         "store": true,
+         "type": "text"
+        }
+       ]
       }
-    },
-    "sourceParams": {}
+     }
+    }
+   }
+  },
+  "store": {
+   "indexType": "scorch",
+   "segmentVersion": 16
   }
+ },
+ "sourceType": "gocbcore",
+ "sourceName": "travel-sample",
+ "sourceParams": {},
+ "planParams": {
+  "maxPartitionsPerPIndex": 4,
+  "indexPartitions": 16,
+  "numReplicas": 0
+ }
+}
   ```
 
 - #### Ingest the Documents
