@@ -1,4 +1,5 @@
-**이 소스는 https://github.com/couchbase-examples/hybrid-search-demo에서 가져와서 수정한 것입니다.**
+**이 소스는 https://github.com/couchbase-examples/hybrid-search-demo 에서 가져와서 수정한 것입니다.**
+**시납시스를 한글로 변경한 부분은 https://github.com/kairess/hybrid-search-movie 를 참고하였습니다.**
 
 ## Hybrid Movie Search using Couchbase
 
@@ -10,7 +11,7 @@ This is a demo app built to perform hybrid search using the Vector Search capabi
 
 You can perform semantic searches for movies based on the plot synopsis. Additionally, you can filter the results based on the year of release and the IMDB rating for the movie. Optionally, you can also search for the keyword in the movie title.
 
-![hybrid search demo](result/hybrid_search_demo.png)
+![hybrid search demo](result/result.png)
 
 The hybrid search can be performed using both the Couchbase Python SDK & the LangChain Vector Store integration for Couchbase. We use OpenAI for generating the embeddings.
 
