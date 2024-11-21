@@ -1,5 +1,3 @@
-#GOOGLE_API_KEY=
-#EMBEDDING_MODEL=models/text-embedding-004
 OPENAI_API_KEY=
 EMBEDDING_MODEL=text-embedding-ada-002
 DB_CONN_STR=couchbase://localhost
