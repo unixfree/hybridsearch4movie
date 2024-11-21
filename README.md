@@ -59,8 +59,7 @@ The hybrid search can be performed using both the Couchbase Python SDK & the Lan
 
   Here, we are creating the index `movies-search-demo` on the documents in the `_default` collection within the `_default` scope in the bucket `movies`. The Vector field is set to `Overview_embedding` with 1536 dimensions and the text field set to `Overview`. We are also indexing and storing some of the other fields in the document for the hybrid search. The similarity metric is set to `dot_product`. If there is a change in these parameters, please adapt the index accordingly.
 
-  ```json
-  {
+  ```json {
  "name": "idx_movie_openai",
  "type": "fulltext-index",
  "params": {
